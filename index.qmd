@@ -1,0 +1,18 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: mastodon
+      text: Mastodon
+      href: https://mastodon.social\@hstd
+    - icon: github
+      text: Github
+      href: https://github.com/hstaudt
+
+---
+
+## Hi there! 
+My name is Heiko and I like doing things on and with computers.
+
