@@ -1,0 +1,65 @@
+---
+title: "Using dotnet Uri"
+author: "hstaudt"
+date: "2023-06-11"
+categories: [learning, code, c#]
+---
+
+## Using dotnet Uri Class
+
+I'm learning C# and to make it more fun and useful, I decided to write a [gopher client](https://en.wikipedia.org/wiki/Gopher_(protocol)). It's still a long way - but you have to start somehow :-)
+
+In my first lines of code I wanted to create a [Socket](https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket?view=net-7.0) that connects to a given server. Well, things are easy if you can make sure that a given URI (gopher://example.com) is reachable and the server is listening on port 70. And if not?
+
+First I tried a lot of error catching by hand, but when browsing the documentation I ran across the [Uri-Class](https://learn.microsoft.com/en-us/dotnet/api/system.uri?view=net-7.0), which I found a bit oversized for my purposes but still very useful.
+
+
+So I decided that the user has to start the program with a URI like `myclient gopher://example.com`.
+
+This URI goes into CSharp's `args[]` array and can be processed:
+
+```cs
+if (args.Length != 1)
+{
+    Console.WriteLine("Please specify a URL. e.g gopher://example.com:70. The port-number is optional.");
+    return;
+}
+
+
+try {
+    host = args[0].ToString();
+    xUri = new Uri(host);
+} catch {
+    Console.WriteLine("Invalid URI");
+    return;
+}
+
+if (xUri.Scheme != "gopher")
+{
+    Console.WriteLine($"Protocol {xUri.Scheme} is not implemented");
+    return;
+}
+
+if (xUri.Port == -1)
+{
+    Console.WriteLine("Port number is not valid");
+    return;
+}
+```
+
+In my Socket-Class the DnsSafe property is used to resolve the IP-Address of the host:
+
+```cs
+Console.Write($"resolving {host}...");
+try{
+    IPHostEntry ipHostInfo =  Dns.GetHostEntry(host);
+    this.ipAddress = ipHostInfo.AddressList[0];
+    Console.WriteLine($" Got {this.ipAddress}");
+} catch {
+    Console.WriteLine($"Error: Could not resolve host {host}.");
+
+}
+```
+
+
+
