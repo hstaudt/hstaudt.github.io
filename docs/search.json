@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "myblog",
     "section": "",
-    "text": "First Post\n\n\n\n\n\n\n\n\n\n\n\n\nHeiko\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJun 1, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMay 29, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "First Post\n\n\n\n\n\n\n\n\n\n\n\n\nHeiko\n\n\n\n\n\n\n  \n\n\n\n\nUsing dotnet Uri\n\n\n\n\n\n\n\nlearning\n\n\ncode\n\n\nc#\n\n\n\n\n\n\n\n\n\n\n\nJun 11, 2023\n\n\nhstaudt\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJun 1, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMay 29, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -26,6 +26,20 @@
     "title": "First Post",
     "section": "",
     "text": "This is the first post in thins Blog\n\nimport datetime\nprint(datetime.datetime.now())\n\n2023-06-01 13:25:33.273028\n\n\nAbove datetime is now() :-)\nEinstein’s theory of special relatively that expresses the equivalence of mass and energy:\n\\(E = mc^{2}\\)"
+  },
+  {
+    "objectID": "posts/2023/06/using_uri.html",
+    "href": "posts/2023/06/using_uri.html",
+    "title": "Using dotnet Uri",
+    "section": "",
+    "text": "I’m learning C# and to make it more fun and useful, I decided to write a gopher client. It’s still a long way - but you have to start somehow :-)\nIn my first lines of code I wanted to create a Socket that connects to a given server. Well, things are easy if you can make sure that a given URI (gopher://example.com) is reachable and the server is listening on port 70. And if not?\nFirst I tried a lot of error catching by hand, but when browsing the documentation I ran across the Uri-Class, which I found a bit oversized for my purposes but still very useful.\nSo I decided that the user has to start the program with a URI like myclient gopher://example.com.\nThis URI goes into CSharp’s args[] array and can be processed:\nif (args.Length != 1)\n{\n    Console.WriteLine(\"Please specify a URL. e.g gopher://example.com:70. The port-number is optional.\");\n    return;\n}\n\n\ntry {\n    host = args[0].ToString();\n    xUri = new Uri(host);\n} catch {\n    Console.WriteLine(\"Invalid URI\");\n    return;\n}\n\nif (xUri.Scheme != \"gopher\")\n{\n    Console.WriteLine($\"Protocol {xUri.Scheme} is not implemented\");\n    return;\n}\n\nif (xUri.Port == -1)\n{\n    Console.WriteLine(\"Port number is not valid\");\n    return;\n}\nIn my Socket-Class the DnsSafe property is used to resolve the IP-Address of the host:\nConsole.Write($\"resolving {host}...\");\ntry{\n    IPHostEntry ipHostInfo =  Dns.GetHostEntry(host);\n    this.ipAddress = ipHostInfo.AddressList[0];\n    Console.WriteLine($\" Got {this.ipAddress}\");\n} catch {\n    Console.WriteLine($\"Error: Could not resolve host {host}.\");\n\n}"
+  },
+  {
+    "objectID": "posts/2023/06/using_uri.html#using-dotnet-uri-class",
+    "href": "posts/2023/06/using_uri.html#using-dotnet-uri-class",
+    "title": "Using dotnet Uri",
+    "section": "",
+    "text": "I’m learning C# and to make it more fun and useful, I decided to write a gopher client. It’s still a long way - but you have to start somehow :-)\nIn my first lines of code I wanted to create a Socket that connects to a given server. Well, things are easy if you can make sure that a given URI (gopher://example.com) is reachable and the server is listening on port 70. And if not?\nFirst I tried a lot of error catching by hand, but when browsing the documentation I ran across the Uri-Class, which I found a bit oversized for my purposes but still very useful.\nSo I decided that the user has to start the program with a URI like myclient gopher://example.com.\nThis URI goes into CSharp’s args[] array and can be processed:\nif (args.Length != 1)\n{\n    Console.WriteLine(\"Please specify a URL. e.g gopher://example.com:70. The port-number is optional.\");\n    return;\n}\n\n\ntry {\n    host = args[0].ToString();\n    xUri = new Uri(host);\n} catch {\n    Console.WriteLine(\"Invalid URI\");\n    return;\n}\n\nif (xUri.Scheme != \"gopher\")\n{\n    Console.WriteLine($\"Protocol {xUri.Scheme} is not implemented\");\n    return;\n}\n\nif (xUri.Port == -1)\n{\n    Console.WriteLine(\"Port number is not valid\");\n    return;\n}\nIn my Socket-Class the DnsSafe property is used to resolve the IP-Address of the host:\nConsole.Write($\"resolving {host}...\");\ntry{\n    IPHostEntry ipHostInfo =  Dns.GetHostEntry(host);\n    this.ipAddress = ipHostInfo.AddressList[0];\n    Console.WriteLine($\" Got {this.ipAddress}\");\n} catch {\n    Console.WriteLine($\"Error: Could not resolve host {host}.\");\n\n}"
   },
   {
     "objectID": "posts/post-with-code/index.html",
