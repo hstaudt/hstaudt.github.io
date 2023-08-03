@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>A learner&#39;s Blog</title>
+<link>https://hstaudt.github.io/blog.html</link>
+<atom:link href="https://hstaudt.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Heikos personal Weblog</description>
+<generator>quarto-1.3.433</generator>
+<lastBuildDate>Wed, 02 Aug 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>First steps in PyQt6</title>
+  <dc:creator>hstaudt </dc:creator>
+  <link>https://hstaudt.github.io/posts/2023/08/1st_pyqt.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>It took me some time to get started with PyQt. In case i need it again:</p>
+<pre><code>PyQt-builder==1.15.2
+PyQt6==6.4.2
+PyQt6-Charts==6.5.0
+PyQt6-Charts-Qt6==6.5.2
+PyQt6-DataVisualization==6.5.0
+PyQt6-DataVisualization-Qt6==6.5.2
+pyqt6-plugins==6.4.2.2.3
+PyQt6-Qt6==6.4.3
+PyQt6-sip==13.5.2
+pyqt6-tools==6.4.2.3.3
+PyQt6-WebEngine==6.5.0
+PyQt6-WebEngine-Qt6==6.5.2</code></pre>
+<ul>
+<li>start the desinger with <code>pyqt6-tools.exe designer</code></li>
+<li>save your window in a .ui file</li>
+<li>create a .py file from the .ui: <code>pyuic6.exe -o ui_mainwindow.py -x mainwindow.ui</code></li>
+<li>import the generated class, subclass it, connect slots, have fun :-)</li>
+</ul>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> ui_mainwindow <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Ui_MainWindow</span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">class</span> MainWindow(QMainWindow, Ui_MainWindow):</span>
+<span id="cb2-4">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">__init__</span>(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, obj<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs):</span>
+<span id="cb2-5">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">super</span>(MainWindow, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>).<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">__init__</span>(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs)</span>
+<span id="cb2-6">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.setupUi(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>)</span>
+<span id="cb2-7">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.ApiPushButton.clicked.<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">connect</span>(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.sayHello)</span>
+<span id="cb2-8"></span>
+<span id="cb2-9">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">def</span> sayHello(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>):</span>
+<span id="cb2-10">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hello World"</span>)</span>
+<span id="cb2-11">    </span>
+<span id="cb2-12"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">__name__</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'__main__'</span>:</span>
+<span id="cb2-13">    app <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> QApplication(sys.argv)</span>
+<span id="cb2-14">    mainWindow <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> MainWindow()</span>
+<span id="cb2-15">    mainWindow.show()</span>
+<span id="cb2-16">    app.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">exec</span>()</span></code></pre></div>
+
+
+
+ ]]></description>
+  <category>learning</category>
+  <category>code</category>
+  <category>python</category>
+  <guid>https://hstaudt.github.io/posts/2023/08/1st_pyqt.html</guid>
+  <pubDate>Wed, 02 Aug 2023 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Using dotnet Uri</title>
+  <dc:creator>hstaudt </dc:creator>
+  <link>https://hstaudt.github.io/posts/2023/06/using_uri.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="using-dotnet-uri-class" class="level2">
+<h2 class="anchored" data-anchor-id="using-dotnet-uri-class">Using dotnet Uri Class</h2>
+<p>I’m learning C# and to make it more fun and useful, I decided to write a <a href="https://en.wikipedia.org/wiki/Gopher_(protocol)">gopher client</a>. It’s still a long way - but you have to start somehow :-)</p>
+<p>In my first lines of code I wanted to create a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket?view=net-7.0">Socket</a> that connects to a given server. Well, things are easy if you can make sure that a given URI (gopher://example.com) is reachable and the server is listening on port 70. And if not?</p>
+<p>First I tried a lot of error catching by hand, but when browsing the documentation I ran across the <a href="https://learn.microsoft.com/en-us/dotnet/api/system.uri?view=net-7.0">Uri-Class</a>, which I found a bit oversized for my purposes but still very useful.</p>
+<p>So I decided that the user has to start the program with a URI like <code>myclient gopher://example.com</code>.</p>
+<p>This URI goes into CSharp’s <code>args[]</code> array and can be processed:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode cs code-with-copy"><code class="sourceCode cs"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>args<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Length</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-3">    Console<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">WriteLine</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Please specify a URL. e.g gopher://example.com:70. The port-number is optional."</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-4">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-5"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb1-6"></span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">try</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-9">    host <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> args<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">].</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ToString</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">();</span></span>
+<span id="cb1-10">    xUri <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">new</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Uri</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>host<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-11"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">catch</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-12">    Console<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">WriteLine</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Invalid URI"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-13">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-14"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb1-15"></span>
+<span id="cb1-16"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>xUri<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Scheme</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gopher"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-17"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-18">    Console<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">WriteLine</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>$<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Protocol {xUri.Scheme} is not implemented"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-19">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-20"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb1-21"></span>
+<span id="cb1-22"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>xUri<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Port</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-23"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-24">    Console<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">WriteLine</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Port number is not valid"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-25">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-26"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+<p>In my Socket-Class the DnsSafe property is used to resolve the IP-Address of the host:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode cs code-with-copy"><code class="sourceCode cs"><span id="cb2-1">Console<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Write</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>$<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"resolving {host}..."</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">try</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-3">    IPHostEntry ipHostInfo <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>  Dns<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">GetHostEntry</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>host<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-4">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">this</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ipAddress</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ipHostInfo<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">AddressList</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">];</span></span>
+<span id="cb2-5">    Console<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">WriteLine</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>$<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" Got {this.ipAddress}"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-6"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">catch</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-7">    Console<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">WriteLine</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>$<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Error: Could not resolve host {host}."</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+
+
+</section>
+
+ ]]></description>
+  <category>learning</category>
+  <category>code</category>
+  <category>c#</category>
+  <guid>https://hstaudt.github.io/posts/2023/06/using_uri.html</guid>
+  <pubDate>Sat, 10 Jun 2023 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://hstaudt.github.io/posts/post-with-code/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is a post with executable code.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://hstaudt.github.io/posts/post-with-code/index.html</guid>
+  <pubDate>Wed, 31 May 2023 22:00:00 GMT</pubDate>
+  <media:content url="https://hstaudt.github.io/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Welcome To My Blog</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://hstaudt.github.io/posts/welcome/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is the first post in a Quarto blog. Welcome!</p>
+<p><img src="https://hstaudt.github.io/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://hstaudt.github.io/posts/welcome/index.html</guid>
+  <pubDate>Sun, 28 May 2023 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>First Post</title>
+  <dc:creator>Heiko </dc:creator>
+  <link>https://hstaudt.github.io/posts/2023/06/Hello, World.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is the first post in thins Blog</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> datetime</span>
+<span id="cb1-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(datetime.datetime.now())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2023-06-01 13:25:33.273028</code></pre>
+</div>
+</div>
+<p>Above datetime is now() :-)</p>
+<p>Einstein’s theory of special relatively that expresses the equivalence of mass and energy:</p>
+<p><img src="https://latex.codecogs.com/png.latex?E%20=%20mc%5E%7B2%7D"></p>
+
+
+
+ ]]></description>
+  <guid>https://hstaudt.github.io/posts/2023/06/Hello, World.html</guid>
+  <pubDate>Thu, 03 Aug 2023 13:31:31 GMT</pubDate>
+</item>
+</channel>
+</rss>
