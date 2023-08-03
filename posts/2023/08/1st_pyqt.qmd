@@ -1,0 +1,49 @@
+---
+title: "First steps in PyQt6"
+author: "hstaudt"
+date: "2023-08-03"
+categories: [learning, code, python]
+---
+
+It took me some time to get started with PyQt. In case i need it again:
+
+```
+PyQt-builder==1.15.2
+PyQt6==6.4.2
+PyQt6-Charts==6.5.0
+PyQt6-Charts-Qt6==6.5.2
+PyQt6-DataVisualization==6.5.0
+PyQt6-DataVisualization-Qt6==6.5.2
+pyqt6-plugins==6.4.2.2.3
+PyQt6-Qt6==6.4.3
+PyQt6-sip==13.5.2
+pyqt6-tools==6.4.2.3.3
+PyQt6-WebEngine==6.5.0
+PyQt6-WebEngine-Qt6==6.5.2
+```
+
+* start the desinger with ```pyqt6-tools.exe designer```
+* save your window in a .ui file
+* create a .py file from the .ui: ```pyuic6.exe -o ui_mainwindow.py -x mainwindow.ui```
+* import the generated class, subclass it, connect slots, have fun :-) 
+```python
+from ui_mainwindow import Ui_MainWindow
+
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self, *args, obj=None, **kwargs):
+        super(MainWindow, self).__init__(*args, **kwargs)
+        self.setupUi(self)
+        self.ApiPushButton.clicked.connect(self.sayHello)
+
+    def sayHello(self):
+        print("Hello World")
+    
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    mainWindow = MainWindow()
+    mainWindow.show()
+    app.exec()
+```
+
+
+
