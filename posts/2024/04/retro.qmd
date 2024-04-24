@@ -26,7 +26,7 @@ Wow - there are still many console-fans out there! Here some things I found in n
 * [qutebrowser](https://qutebrowser.org/) is a lightweight browser
 * [nnn](https://github.com/jarun/nnn) a cool filemanager
 * [NeoMutt and OAuth2](https://github.com/neomutt/neomutt/tree/main/contrib/oauth2)
-* [Solène Rapenne](https://dataswap.org/~solenne) started the [The Old Computer Challenge](https://dataswamp.org/~solene/2021-07-07-old-computer-challenge.html).
+* [Solène Rapenne](https://dataswamp.org/~solenne) started the [The Old Computer Challenge](https://dataswamp.org/~solene/2021-07-07-old-computer-challenge.html).
 * [Ohio Olarte](https://ohio.araw.xyz/) took the challenge and [wrote about it](https://ohio.araw.xyz/old-computer/)
 
 
