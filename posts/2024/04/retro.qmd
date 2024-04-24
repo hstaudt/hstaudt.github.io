@@ -1,0 +1,32 @@
+---
+title: "Linux Retro"
+author: "hstaudt"
+date: "2024-04-24"
+categories: [linux, retro, console]
+---
+
+More and more often I find software overloaded, blown-up too noisy.
+I often tried to use good old console programs (like alpine mail) but often got stuck at some point because I ran into trouble with authenticating to a service. So I continued using Thunderbird. 
+Or when a account i integrated into the Gnome Desktop told me, that a token was no longer valid...
+
+So I'll try to go back to the roots and
+
+* install a console-only linux (done!)
+* find E-Mail Programs that work with Microsoft's outlook.com, google and IMAP4/SMTP. This can also be inside Emacs, (Neo-)vim or anything else. But it should work reliably.
+* Web-Browsing might be difficult. I do prefer text-only browsing, but most of the web is -well, I'd say uncomfortable without a graphical browser.
+* I also like [LogSeq](https://logseq.com/), which is availble as AppImage. 
+
+So I'll do *startx* as in the early days :-)
+
+With that in mind I simply did a google search for linux consolse as a daily driver. 
+Wow - there are still many console-fans out there! Here some things I found in no specific order.
+
+* I should have a look at [tmux](https://github.com/tmux/tmux/wiki/Getting-Started) and zshell.
+* Give [Neovim](https://neovim.io/) a try. Here's a [video](https://www.youtube.com/watch?v=6pAG3BHurdM) by Josean Martinez on how to make it amazing.
+* [qutebrowser](https://qutebrowser.org/) is a lightweight browser
+* [nnn](https://github.com/jarun/nnn) a cool filemanager
+* [NeoMutt and OAuth2](https://github.com/neomutt/neomutt/tree/main/contrib/oauth2)
+* [Solène Rapenne](https://dataswap.org/~solenne) started the [The Old Computer Challenge](https://dataswamp.org/~solene/2021-07-07-old-computer-challenge.html).
+* [Ohio Olarte](https://ohio.araw.xyz/) took the challenge and [wrote about it](https://ohio.araw.xyz/old-computer/)
+
+
